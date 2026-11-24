@@ -1,0 +1,26 @@
+# Obsidian workspace 文件（每台设备布局不同，不共享）
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Obsidian 回收站
+.trash/
+
+# 系统临时文件
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 大型二进制附件（可选：如果附件较小可注释掉下面两行）
+# *.mp4
+# *.mov
+# *.zip
+# *.rar
+# *.7z
+
+# 日志 / 缓存
+logs/
+*.log
+
+# 敏感信息（建议用环境变量或加密笔记，不要提交明文）
+# .env
+# *.secret

@@ -1,0 +1,60 @@
+name: Backup & Convert to PDF
+
+on:
+  # 每天凌晨 2 点自动运行
+  schedule:
+    - cron: '0 2 * * *'
+  # 也可以手动触发
+  workflow_dispatch:
+
+jobs:
+  backup-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-xetex fonts-noto-cjk
+          pandoc --version
+
+      - name: Convert Markdown to PDF
+        run: |
+          mkdir -p pdf
+          shopt -s nullglob
+          count=0
+          for md in notes/**/*.md snippets/*.md journal/*.md projects/**/*.md; do
+            base=$(basename "$md" .md)
+            # 用相对路径去掉 .md 扩展名作为 PDF 文件名，避免不同目录同名覆盖
+            rel="${md%.md}"
+            dest="pdf/${rel//\//__}"
+            if [ -f "$md" ]; then
+              pandoc "$md" -o "${dest}.pdf" \
+                --pdf-engine=xelatex \
+                -V CJKmainfont="Noto Sans CJK SC" \
+                -V geometry:margin=2.5cm \
+                --metadata title="$base"
+              count=$((count+1))
+            fi
+          done
+          echo "Converted $count files"
+
+      - name: Commit PDFs back to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: auto-generate PDF backups ($(date -u +'%Y-%m-%d'))"
+          git push
+
+      - name: Create daily backup tag
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+          TAG="backup-$(date -u +'%Y%m%d')"
+          git tag -f "$TAG"
+          git push origin "$TAG" --force
