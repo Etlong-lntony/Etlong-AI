@@ -27,10 +27,16 @@ if ! git remote get-url origin >/dev/null 2>&1; then
   git remote add origin https://github.com/yourname/my-knowledge-base.git
 fi
 
-# 首次提交并推送
+# 首次提交并推送（如果 origin 是 yourname 占位符，跳过 push）
 git add .
 git commit -m "Initial knowledge base setup"
-git push -u origin main
+
+if git remote get-url origin | grep -q "yourname"; then
+  echo "⚠️  远端 URL 仍是占位符 yourname/my-knowledge-base，请先在 GitHub 创建仓库并替换后再推送。"
+  echo "    替换命令：git remote set-url origin https://github.com/你的用户名/你的仓库.git"
+else
+  git push -u origin main
+fi
 
 # 3. 后续日常提交
 git add .
