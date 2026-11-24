@@ -1,8 +1,7 @@
 # 1. 在 GitHub 创建私有仓库
-#    Repository name: my-knowledge-base
+#    Repository name: -AI-Etlong
 #    用户名: Etlong-lntony
-#    URL: https://github.com/Etlong-lntony/my-knowledge-base.git
-#    勾选 Add a README file
+#    URL: https://github.com/Etlong-lntony/-AI-Etlong.git
 #
 # 2. 本地初始化（Windows 用 Git Bash 或 PowerShell）
 #    本脚本默认在当前目录初始化；若想放进 kb/ 子目录，可改成：
@@ -28,14 +27,15 @@ git config user.email "12345678+Etlong-lntony@users.noreply.github.com"
 
 # 关联远端
 if ! git remote get-url origin >/dev/null 2>&1; then
-  git remote add origin https://github.com/Etlong-lntony/my-knowledge-base.git
+  git remote add origin https://github.com/Etlong-lntony/-AI-Etlong.git
 else
-  git remote set-url origin https://github.com/Etlong-lntony/my-knowledge-base.git
+  git remote set-url origin https://github.com/Etlong-lntony/-AI-Etlong.git
 fi
 
 # 首次提交并推送
 git add .
 git commit -m "Initial knowledge base setup"
+git pull --rebase origin main
 git push -u origin main
 
 # 3. 后续日常提交
@@ -44,4 +44,4 @@ git commit -m "Update notes"
 git push
 
 # 4. 多设备同步（第二台电脑）
-git clone https://github.com/Etlong-lntony/my-knowledge-base.git
+git clone https://github.com/Etlong-lntony/-AI-Etlong.git
