@@ -1,6 +1,7 @@
 # 1. 在 GitHub 创建私有仓库
 #    Repository name: my-knowledge-base
-#    Visibility: Private
+#    用户名: Etlong-lntony
+#    URL: https://github.com/Etlong-lntony/my-knowledge-base.git
 #    勾选 Add a README file
 #
 # 2. 本地初始化（Windows 用 Git Bash 或 PowerShell）
@@ -19,24 +20,23 @@ mkdir -p journal projects notes/networking notes/security notes/linux snippets r
 if [ ! -d .git ]; then
   git init -b main
 fi
-git config user.name "yourname"
-git config user.email "12345678+yourname@users.noreply.github.com"
+git config user.name "Etlong-lntony"
+# TODO: 把 12345678 替换成你的 GitHub 数字 ID
+# 获取方法：打开 https://github.com/settings/emails，勾选 Keep my email addresses private
+# 然后复制 no-reply 地址，形如 12345678+Etlong-lntony@users.noreply.github.com
+git config user.email "12345678+Etlong-lntony@users.noreply.github.com"
 
-# 关联远端（替换 yourname 和仓库名）
+# 关联远端
 if ! git remote get-url origin >/dev/null 2>&1; then
-  git remote add origin https://github.com/yourname/my-knowledge-base.git
+  git remote add origin https://github.com/Etlong-lntony/my-knowledge-base.git
+else
+  git remote set-url origin https://github.com/Etlong-lntony/my-knowledge-base.git
 fi
 
-# 首次提交并推送（如果 origin 是 yourname 占位符，跳过 push）
+# 首次提交并推送
 git add .
 git commit -m "Initial knowledge base setup"
-
-if git remote get-url origin | grep -q "yourname"; then
-  echo "⚠️  远端 URL 仍是占位符 yourname/my-knowledge-base，请先在 GitHub 创建仓库并替换后再推送。"
-  echo "    替换命令：git remote set-url origin https://github.com/你的用户名/你的仓库.git"
-else
-  git push -u origin main
-fi
+git push -u origin main
 
 # 3. 后续日常提交
 git add .
@@ -44,4 +44,4 @@ git commit -m "Update notes"
 git push
 
 # 4. 多设备同步（第二台电脑）
-git clone https://github.com/yourname/my-knowledge-base.git
+git clone https://github.com/Etlong-lntony/my-knowledge-base.git
