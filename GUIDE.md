@@ -18,6 +18,7 @@
 | 5. 手动触发 | [02-Run-workflow手动触发.jpg](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg) | Actions 手动触发页（In progress） |
 | 5. 失败排查 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
 | 5. 成功验收 | [06-备份成功截图.jpg](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg) | 全步骤绿色通过（1m 33s） |
+| 8. 在线浏览 | 无截图（见 8.2 / 8.4 节） | 公开仓库 + GitHub Pages 上线，访问 `*.github.io/<仓库名>` |
 
 > 截图原件存放于资料库「GitHub 个人档案库 / 界面截图」目录，
 > 指南 PDF 与截图分开存放（PDF 在「指南PDF」目录）。
@@ -239,10 +240,6 @@ git push
 git clone https://github.com/Etlong-lntony/Etlong-AI.git
 ```
 
-可选：仓库名与用户名相同时，README 页即个人主页；
-也可开 GitHub Pages 把笔记发布成网站
-（Settings → Pages → main 分支根目录）。
-
 ## 7. 安全清单
 
 - [ ] PAT 只勾 `repo`，定期 Revoke 旧的
@@ -250,6 +247,74 @@ git clone https://github.com/Etlong-lntony/Etlong-AI.git
 - [ ] GitHub 账户开 **Two-Factor Authentication**
 - [ ] 仓库保持 Private；私有 ≠ 端到端加密，GitHub 仍可读明文
 - [ ] 重要内容定期 `git clone` 一份到本地 / 外置硬盘
+
+## 8. 把仓库变成可浏览的网站（GitHub Pages）
+
+仓库建好、内容沉淀之后，还可以直接生成一个在线浏览的网站，不用写任何后端。
+两种方式按"是否愿意公开"选：
+
+| 方式 | 适用 | 代价 |
+|---|---|---|
+| **A. GitHub Pages（本仓库公开）** | 想让笔记/指南全网可访问 | 仓库变 Public，全部内容公开 |
+| **B. 只公开 `site/` 子目录到独立公开仓库** | 只想公开网站，主档案库保持私有 | 多维护一个仓库 |
+
+### 8.1 准备静态站点（本仓库已内置 `site/`）
+
+仓库根目录已带一个极简静态站（暗色主题、纯 HTML，无依赖）：
+
+```text
+site/
+├── index.html            # 首页：卡片导航 + 快速开始 + 使用建议
+├── guide.html           # 搭建指南页（复用 GUIDE.md 内容 + 样式 + 截图）
+└── best-practices.html # Obsidian + Git 同步最佳实践
+```
+
+生成命令（本仓库已封装，跑一下即可同步 `site/guide.html`）：
+
+```bash
+node md2html.js   # 更新 site/guide.html 的内容与样式
+```
+
+### 8.2 方式 A：公开仓库 + 启用 GitHub Pages
+
+1. 仓库页 → **Settings**（仓库设置）
+2. 左侧最底 **Danger zone** → **Change visibility** → 选 **Public**
+   （输入仓库名 `Etlong-AI` 确认）
+3. 回到 **Settings** → **Pages**
+4. **Build and deployment** → **Source** 选 **Deploy from a branch**
+5. **Branch** 选 `main`，**文件夹**选 **`site`**（⚠️ 不是 `/ (root)`，
+   站点文件在 `site/` 目录里，选错会白页 / 404）
+6. 点 **Save**，等 1–2 分钟
+
+上线地址：
+
+```text
+https://<你的用户名>.github.io/<仓库名>/
+例：https://etlong-lntony.github.io/Etlong-AI/
+```
+
+### 8.3 方式 B：只公开网站（折中）
+
+不想让笔记源码公开时：
+
+1. 新建一个**公开**仓库，例如 `Etlong-AI-site`
+2. 把本仓库的 `site/` 整个目录拷进去作为该仓库根目录
+3. 主仓库 `Etlong-AI` 保持 **Private**，只把网站页放公开仓库
+4. 在公开仓库同样走 8.2 的 Pages 步骤（Branch = `main`，文件夹 = `/ (root)`，
+   因为 `site/` 已拷成根目录）
+
+### 8.4 验收与排查
+
+- 访问上线地址，应看到暗色首页 + 卡片导航；点卡片能跳各页
+- **404 / "Site not found"**：
+  - 仓库还没设为 Public → 私有仓库的 Pages 不对外
+  - Pages 的文件夹没选 `site` → 根目录无 index.html
+  - 刚开 Pages，等 1–2 分钟再刷
+- 内容没更新：`node md2html.js` 重新生成 → `git add site/ && git commit && git push`，
+  Pages 会在推送后 1–2 分钟自动重建
+
+> ⚠️ **安全提示**：方式 A 会让 `GUIDE.md`、截图、`journal/`、`notes/`、`snippets/`
+> 全网可见。操作前确认这些内容**可以公开**；含敏感信息的请改用方式 B。
 
 ---
 
@@ -262,5 +327,7 @@ git clone https://github.com/Etlong-lntony/Etlong-AI.git
 | `.gitignore` | Obsidian 忽略规则 |
 | `.github/workflows/backup-to-pdf.yml` | 定时转 PDF + 备份 |
 | `OBSIDIAN-BEST-PRACTICES.md` | Obsidian 同步最佳实践 |
+| `md2html.js` | Markdown → HTML 构建脚本（同步 `site/guide.html`） |
+| `site/` | 静态站点（GitHub Pages 托管，含 index / guide / best-practices 三页） |
 | `GUIDE.md` | 本指南 |
 | `GUIDE.pdf` | 本指南 PDF 版（同步上传资料库） |
