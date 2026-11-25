@@ -13,13 +13,13 @@
 
 | 步骤 | 截图 | 说明 |
 |---|---|---|
-| 2. 创建仓库 | 01-新建仓库.png | GitHub 新建仓库页面 |
-| 5. Actions 权限 | 02-Actions权限设置.png | Settings → Actions → General |
-| 5. 手动触发 | 03-Run workflow.png | 手动触发 Backup & Convert to PDF |
-| 5. 查看结果 | 04-Actions日志.png | 运行日志 / Artifacts |
+| 5. Actions 运行日志 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
+| 5. 操作权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
+| 5. 权限与保留期 | [05-Actions权限设置_操作权限.jpg](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg) | 操作权限 + 日志保留 90 天 |
 
-> 截图请按上表命名后存入资料库「界面截图」目录，指南 PDF 与截图
-> 分开存放（PDF 在「指南PDF」目录）。
+> 截图原件存放于资料库「GitHub 个人档案库 / 界面截图」目录，
+> 指南 PDF 与截图分开存放（PDF 在「指南PDF」目录）。
+> 待补截图：01-新建仓库（建仓库页面）、02-Run workflow（手动触发页）。
 
 ---
 
@@ -188,7 +188,12 @@ git push -u origin main
    - **Workflow permissions** 选 **Read and write permissions**
      （workflow 要 push PDF 回仓库，必须写权限）
 3. 点 **Save**
-   【截图：02-Actions权限设置.png —— Actions General 设置页】
+
+   ![](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg)
+   *图 1：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"*
+
+   ![](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg)
+   *图 2：检查、工作流运行、状态、工件和日志保留 90 天*
 
 > ⚠️ **常见问题 10**：手动触发 Run workflow 后 job 以
 > **exit code 43** 失败
@@ -200,9 +205,10 @@ git push -u origin main
 验证：
 
 - **Actions** → 选 `Backup & Convert to PDF` → **Run workflow**
-  【截图：03-Run workflow.png —— 手动触发页】
 - 绿色通过 = 成功；失败时看日志 + Artifacts 里是否已生成 PDF
-  【截图：04-Actions日志.png —— 运行日志 / Artifacts】
+
+  ![](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg)
+  *图 3：Actions 运行失败示例（exit code 43）—— 修复后应显示绿色通过*
 
 ## 6. 日常使用
 
