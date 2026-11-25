@@ -275,23 +275,33 @@ site/
 node md2html.js   # 更新 site/guide.html 的内容与样式
 ```
 
-### 8.2 方式 A：公开仓库 + 启用 GitHub Pages
+### 8.2 方式 A：公开仓库 + 启用 GitHub Pages（本仓库实际做法）
+
+> 本仓库 `Etlong-AI` 采用的方式：把站点页**提到仓库根目录**，Pages 用 `/ (root)` 配置。
+> 这样不用改 Pages 的文件夹选择，根目录有 `index.html` 即自动上线。
 
 1. 仓库页 → **Settings**（仓库设置）
 2. 左侧最底 **Danger zone** → **Change visibility** → 选 **Public**
    （输入仓库名 `Etlong-AI` 确认）
-3. 回到 **Settings** → **Pages**
-4. **Build and deployment** → **Source** 选 **Deploy from a branch**
-5. **Branch** 选 `main`，**文件夹**选 **`site`**（⚠️ 不是 `/ (root)`，
-   站点文件在 `site/` 目录里，选错会白页 / 404）
-6. 点 **Save**，等 1–2 分钟
+3. 把站点三页拷到仓库**根目录**（`site/` 保留作维护源）：
 
-上线地址：
+   ```bash
+   cp site/index.html site/guide.html site/best-practices.html ./
+   ```
+
+4. 回到 **Settings** → **Pages**
+5. **Build and deployment** → **Source** 选 **Deploy from a branch**
+6. **Branch** 选 `main`，**文件夹**选 **`/ (root)`**（站点已在根目录）
+7. `git add . && git commit -m "site: promote pages to root" && git push`
+8. 等 1–2 分钟
+
+✅ **本仓库已上线地址**（2026-11-25 确认）：
 
 ```text
-https://<你的用户名>.github.io/<仓库名>/
-例：https://etlong-lntony.github.io/Etlong-AI/
+https://etlong-lntony.github.io/Etlong-AI/
 ```
+
+> 通用公式：`https://<你的用户名>.github.io/<仓库名>/`
 
 ### 8.3 方式 B：只公开网站（折中）
 
@@ -306,12 +316,14 @@ https://<你的用户名>.github.io/<仓库名>/
 ### 8.4 验收与排查
 
 - 访问上线地址，应看到暗色首页 + 卡片导航；点卡片能跳各页
+- **本仓库现状**：✅ 已上线 `https://etlong-lntony.github.io/Etlong-AI/`（2026-11-25 确认），
+  站点页在仓库**根目录**（`index.html`/`guide.html`/`best-practices.html`），Pages 用 `/ (root)` 配置
 - **404 / "Site not found"**：
-  - 仓库还没设为 Public → 私有仓库的 Pages 不对外
-  - Pages 的文件夹没选 `site` → 根目录无 index.html
+  - 仓库还没设为 Public → 私有仓库的 Pages 不对外匿名访问
+  - 根目录没有 `index.html` → 站点页没拷到根目录，或 Pages 文件夹没选对
   - 刚开 Pages，等 1–2 分钟再刷
-- 内容没更新：`node md2html.js` 重新生成 → `git add site/ && git commit && git push`，
-  Pages 会在推送后 1–2 分钟自动重建
+- 内容没更新：`node md2html.js` 重新生成 → `cp site/guide.html ./`（同步到根目录）
+  → `git add . && git commit && git push`，Pages 会在推送后 1–2 分钟自动重建
 
 > ⚠️ **安全提示**：方式 A 会让 `GUIDE.md`、截图、`journal/`、`notes/`、`snippets/`
 > 全网可见。操作前确认这些内容**可以公开**；含敏感信息的请改用方式 B。

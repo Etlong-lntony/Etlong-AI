@@ -322,21 +322,29 @@ git clone https://github.com/Etlong-lntony/Etlong-AI.git</code></pre>
 
 <pre><code>node md2html.js   # 更新 site/guide.html 的内容与样式</code></pre>
 
-<h3>8.2 方式 A：公开仓库 + 启用 GitHub Pages</h3>
+<h3>8.2 方式 A：公开仓库 + 启用 GitHub Pages（本仓库实际做法）</h3>
+
+<blockquote>本仓库 <code>Etlong-AI</code> 采用的方式：把站点页<strong>提到仓库根目录</strong>，Pages 用 <code>/ (root)</code> 配置。</blockquote>
+<blockquote>这样不用改 Pages 的文件夹选择，根目录有 <code>index.html</code> 即自动上线。</blockquote>
 
 <p>1. 仓库页 → <strong>Settings</strong>（仓库设置）</p>
 <p>2. 左侧最底 <strong>Danger zone</strong> → <strong>Change visibility</strong> → 选 <strong>Public</strong></p>
 <p>（输入仓库名 <code>Etlong-AI</code> 确认）</p>
-<p>3. 回到 <strong>Settings</strong> → <strong>Pages</strong></p>
-<p>4. <strong>Build and deployment</strong> → <strong>Source</strong> 选 <strong>Deploy from a branch</strong></p>
-<p>5. <strong>Branch</strong> 选 <code>main</code>，<strong>文件夹</strong>选 <strong><code>site</code></strong>（⚠️ 不是 <code>/ (root)</code>，</p>
-<p>站点文件在 <code>site/</code> 目录里，选错会白页 / 404）</p>
-<p>6. 点 <strong>Save</strong>，等 1–2 分钟</p>
+<p>3. 把站点三页拷到仓库<strong>根目录</strong>（<code>site/</code> 保留作维护源）：</p>
 
-<p>上线地址：</p>
+<pre><code>   cp site/index.html site/guide.html site/best-practices.html ./</code></pre>
 
-<pre><code>https://&lt;你的用户名>.github.io/&lt;仓库名>/
-例：https://etlong-lntony.github.io/Etlong-AI/</code></pre>
+<p>4. 回到 <strong>Settings</strong> → <strong>Pages</strong></p>
+<p>5. <strong>Build and deployment</strong> → <strong>Source</strong> 选 <strong>Deploy from a branch</strong></p>
+<p>6. <strong>Branch</strong> 选 <code>main</code>，<strong>文件夹</strong>选 <strong><code>/ (root)</code></strong>（站点已在根目录）</p>
+<p>7. <code>git add . &amp;&amp; git commit -m "site: promote pages to root" &amp;&amp; git push</code></p>
+<p>8. 等 1–2 分钟</p>
+
+<p>✅ <strong>本仓库已上线地址</strong>（2026-11-25 确认）：</p>
+
+<pre><code>https://etlong-lntony.github.io/Etlong-AI/</code></pre>
+
+<blockquote>通用公式：<code>https://&lt;你的用户名>.github.io/&lt;仓库名>/</code></blockquote>
 
 <h3>8.3 方式 B：只公开网站（折中）</h3>
 
@@ -353,12 +361,16 @@ git clone https://github.com/Etlong-lntony/Etlong-AI.git</code></pre>
 <ul>
 
 <li>访问上线地址，应看到暗色首页 + 卡片导航；点卡片能跳各页</li>
+<li><strong>本仓库现状</strong>：✅ 已上线 <code>https://etlong-lntony.github.io/Etlong-AI/</code>（2026-11-25 确认），</li></ul>
+<p>站点页在仓库<strong>根目录</strong>（<code>index.html</code>/<code>guide.html</code>/<code>best-practices.html</code>），Pages 用 <code>/ (root)</code> 配置</p>
+<ul>
+
 <li><strong>404 / "Site not found"</strong>：</li>
-<li>仓库还没设为 Public → 私有仓库的 Pages 不对外</li>
-<li>Pages 的文件夹没选 <code>site</code> → 根目录无 index.html</li>
+<li>仓库还没设为 Public → 私有仓库的 Pages 不对外匿名访问</li>
+<li>根目录没有 <code>index.html</code> → 站点页没拷到根目录，或 Pages 文件夹没选对</li>
 <li>刚开 Pages，等 1–2 分钟再刷</li>
-<li>内容没更新：<code>node md2html.js</code> 重新生成 → <code>git add site/ &amp;&amp; git commit &amp;&amp; git push</code>，</li></ul>
-<p>Pages 会在推送后 1–2 分钟自动重建</p>
+<li>内容没更新：<code>node md2html.js</code> 重新生成 → <code>cp site/guide.html ./</code>（同步到根目录）</li></ul>
+<p>→ <code>git add . &amp;&amp; git commit &amp;&amp; git push</code>，Pages 会在推送后 1–2 分钟自动重建</p>
 
 <blockquote>⚠️ <strong>安全提示</strong>：方式 A 会让 <code>GUIDE.md</code>、截图、<code>journal/</code>、<code>notes/</code>、<code>snippets/</code></blockquote>
 <blockquote>全网可见。操作前确认这些内容<strong>可以公开</strong>；含敏感信息的请改用方式 B。</blockquote>
