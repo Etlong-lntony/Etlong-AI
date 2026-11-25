@@ -138,5 +138,5 @@ hr{border:none;border-top:1px solid var(--line);margin:30px 0}
 `;
 
 const full = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>GitHub 个人档案库搭建指南</title><style>${css}</style></head><body>` + html + `</body></html>`;
-fs.writeFileSync('D:/workbuddy/2026-11-24-14-39-52/GUIDE.html', full, 'utf8');
+fs.writeFileSync('D:/workbuddy/2026-11-24-14-39-52/GUIDE-build.html', full, 'utf8');
 console.log('HTML written:', full.length, 'bytes');
