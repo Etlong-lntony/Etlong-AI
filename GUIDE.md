@@ -14,11 +14,10 @@
 | 步骤 | 截图 | 说明 |
 |---|---|---|
 | 2. 创建仓库 | [01-仓库首页.jpg](https://workbuddy-space-static.codebuddy.work/image/food2ohKKmX1t82IdJsLVC.jpg) | 仓库首页（私有仓库） |
-| 5. Actions 运行日志 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
-| 5. 操作权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
+| 5. 权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
 | 5. 手动触发 | [02-Run-workflow手动触发.jpg](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg) | Actions 手动触发页（In progress） |
-| 5. 备份成功 | [06-备份成功截图.jpg](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg) | 全步骤绿色通过 + 1 warning |
-| 5. 权限与保留期 | [05-Actions权限设置_操作权限.jpg](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg) | 操作权限 + 日志保留 90 天 |
+| 5. 失败排查 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
+| 5. 成功验收 | [06-备份成功截图.jpg](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg) | 全步骤绿色通过（1m 33s） |
 
 > 截图原件存放于资料库「GitHub 个人档案库 / 界面截图」目录，
 > 指南 PDF 与截图分开存放（PDF 在「指南PDF」目录）。
@@ -194,10 +193,10 @@ git push -u origin main
 3. 点 **Save**
 
    ![](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg)
-   *图 1：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"*
+   *图：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"（截图 04）*
 
    ![](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg)
-   *图 2：检查、工作流运行、状态、工件和日志保留 90 天*
+   *图：下方为运行保留期设置（截图 05）*
 
 > ⚠️ **常见问题 10**：手动触发 Run workflow 后 job 以
 > **exit code 43** 失败
@@ -206,23 +205,23 @@ git push -u origin main
 > 无变更时跳过 push、PDF 一律上传 Artifact 兜底。
 > 重跑后若仍红，展开失败步骤看 `+` 开头的 set -x 追踪日志定位。
 
+   ![](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg)
+   *图：失败排查示例 —— 红色 job（exit code 43），展开步骤看 set -x 追踪日志（截图 03）*
+
 验证：
 
 - **Actions** → 选 `Backup & Convert to PDF` → **Run workflow**
 
   ![](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg)
-  *图：手动触发后运行中（In progress）*
+  *图：手动触发后运行中（In progress，截图 02）*
 
-- 绿色通过 = 成功；失败时看日志 + Artifacts 里是否已生成 PDF
+- 跑完看结果：
 
   ![](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg)
-  *图：backup-pdf job 全步骤通过（1m 33s），Artifacts 区可下载 PDF 备份*
+  *图：backup-pdf job 全步骤通过（1m 33s），Artifacts 区可下载 PDF 备份（截图 06）*
 
 > 提示：成功运行仍可能有 **1 warning**（通常是 `set -x` 日志量或
 > LaTeX 字体告警），不影响结果；看 job 左侧是否全绿 + Artifacts 是否生成即可。
-
-  ![](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg)
-  *图 3：Actions 运行失败示例（exit code 43）—— 修复后应显示绿色通过*
 
 ## 6. 日常使用
 
