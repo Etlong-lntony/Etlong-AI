@@ -17,6 +17,7 @@
 | 5. Actions 运行日志 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
 | 5. 操作权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
 | 5. 手动触发 | [02-Run-workflow手动触发.jpg](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg) | Actions 手动触发页（In progress） |
+| 5. 备份成功 | [06-备份成功截图.jpg](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg) | 全步骤绿色通过 + 1 warning |
 | 5. 权限与保留期 | [05-Actions权限设置_操作权限.jpg](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg) | 操作权限 + 日志保留 90 天 |
 
 > 截图原件存放于资料库「GitHub 个人档案库 / 界面截图」目录，
@@ -213,6 +214,12 @@ git push -u origin main
   *图：手动触发后运行中（In progress）*
 
 - 绿色通过 = 成功；失败时看日志 + Artifacts 里是否已生成 PDF
+
+  ![](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg)
+  *图：backup-pdf job 全步骤通过（1m 33s），Artifacts 区可下载 PDF 备份*
+
+> 提示：成功运行仍可能有 **1 warning**（通常是 `set -x` 日志量或
+> LaTeX 字体告警），不影响结果；看 job 左侧是否全绿 + Artifacts 是否生成即可。
 
   ![](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg)
   *图 3：Actions 运行失败示例（exit code 43）—— 修复后应显示绿色通过*
