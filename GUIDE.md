@@ -90,7 +90,7 @@ git 推 GitHub 不再接受账号密码，必须用 PAT：
 5. 点 **Create repository**
 
    ![](https://workbuddy-space-static.codebuddy.work/image/food2ohKKmX1t82IdJsLVC.jpg)
-   *图：建好后的仓库首页（私有仓库，带 README 与完整目录结构）*
+   图：建好后的仓库首页（私有仓库，带 README 与完整目录结构）
 
 > ⚠️ **常见问题 3**：仓库建好后访问 `https://github.com/用户名/仓库名`
 > 显示 404 —— 因为它是**私有**的，未登录访问就是 404，属正常现象。
@@ -193,10 +193,10 @@ git push -u origin main
 3. 点 **Save**
 
    ![](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg)
-   *图：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"（截图 04）*
+   图：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"（截图 04）
 
    ![](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg)
-   *图：下方为运行保留期设置（截图 05）*
+   图：下方为运行保留期设置（截图 05）
 
 > ⚠️ **常见问题 10**：手动触发 Run workflow 后 job 以
 > **exit code 43** 失败
@@ -206,19 +206,19 @@ git push -u origin main
 > 重跑后若仍红，展开失败步骤看 `+` 开头的 set -x 追踪日志定位。
 
    ![](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg)
-   *图：失败排查示例 —— 红色 job（exit code 43），展开步骤看 set -x 追踪日志（截图 03）*
+   图：失败排查示例 —— 红色 job（exit code 43），展开步骤看 set -x 追踪日志（截图 03）
 
 验证：
 
 - **Actions** → 选 `Backup & Convert to PDF` → **Run workflow**
 
   ![](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg)
-  *图：手动触发后运行中（In progress，截图 02）*
+  图：手动触发后运行中（In progress，截图 02）
 
 - 跑完看结果：
 
   ![](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg)
-  *图：backup-pdf job 全步骤通过（1m 33s），Artifacts 区可下载 PDF 备份（截图 06）*
+  图：backup-pdf job 全步骤通过（1m 33s），Artifacts 区可下载 PDF 备份（截图 06）
 
 > 提示：成功运行仍可能有 **1 warning**（通常是 `set -x` 日志量或
 > LaTeX 字体告警），不影响结果；看 job 左侧是否全绿 + Artifacts 是否生成即可。
