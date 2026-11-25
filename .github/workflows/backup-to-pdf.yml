@@ -34,15 +34,19 @@ jobs:
             rel="${md%.md}"
             dest="pdf/${rel//\//__}"
             if [ -f "$md" ]; then
-              pandoc "$md" -o "${dest}.pdf" \
+              if pandoc "$md" -o "${dest}.pdf" \
                 --pdf-engine=xelatex \
                 -V CJKmainfont="Noto Sans CJK SC" \
                 -V geometry:margin=2.5cm \
-                --metadata title="$base"
-              count=$((count+1))
+                --metadata title="$base"; then
+                count=$((count+1))
+              else
+                echo "WARN: pandoc failed for $md, skipping"
+              fi
             fi
           done
           echo "Converted $count files"
+          ls -la pdf/
 
       - name: Commit PDFs back to repository
         run: |
@@ -58,3 +62,12 @@ jobs:
           TAG="backup-$(date -u +'%Y%m%d')"
           git tag -f "$TAG"
           git push origin "$TAG" --force
+
+      - name: Upload PDFs as artifacts (fallback)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-backups
+          path: pdf/
+          retention-days: 30
+          if-no-files-found: ignore
