@@ -1,25 +1,21 @@
-<<<<<<< HEAD
-# Etlong-AI
-=======
-# 📚 个人档案库 / 知识库
+# 📚 个人档案库 / 知识库 — Etlong-AI
 
 > 一个版本控制驱动的个人知识库，用于沉淀笔记、项目、命令片段与学习记录。
+> 仓库：[Etlong-lntony/Etlong-AI](https://github.com/Etlong-lntony/Etlong-AI)（私有）
 
 ## 目录结构
 
 ```text
 .
 ├── README.md            # 本文件，首页索引
+├── GUIDE.md             # 搭建指南（含截图索引）
 ├── journal/             # 日记 / 周记 / 月记
-│   └── 2026-11-24.md
 ├── projects/            # 项目资料
-│   └── project-a/
 ├── notes/               # 按主题分类的笔记
 │   ├── networking/
 │   ├── security/
 │   └── linux/
 ├── snippets/            # 代码片段 / 常用命令
-│   └── docker.md
 ├── references/          # 参考资料 / 链接收藏
 ├── pdf/                 # GitHub Actions 自动生成的 PDF 备份
 └── templates/           # 笔记模板
@@ -37,6 +33,7 @@
    ```
 
 3. 如果启用 GitHub Actions 自动备份，PDF 会生成在 `pdf/` 目录
+   （运行结果也可在 Actions 的 Artifacts 里下载）
 
 ## 使用建议
 
@@ -48,4 +45,3 @@
 ## 贡献 / 维护
 
 这是个人仓库，由我独立维护。如多人协作，建议每个笔记独立 PR 提交。
->>>>>>> dcc6f95 (Initial knowledge base setup)
