@@ -23,7 +23,17 @@ logs/
 
 # 生成的 PDF 备份（由 GitHub Actions 生成；pdf/ 保留为生成目录）
 GUIDE.pdf
-GUIDE.html
+
+# 站点页（根目录 + site/ 子目录）需入库供 GitHub Pages 托管；
+# 注意：core.ignorecase=true 下大写构建产物 GUIDE.html 会误伤小写 guide.html，
+# 故构建产物改用单独命名，站点页统一入库
+!index.html
+!guide.html
+!best-practices.html
+!site/index.html
+!site/guide.html
+!site/best-practices.html
+build/GUIDE.html
 
 # 本地截图（正式版存资料库）
 screenshots/

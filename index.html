@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人档案库 — Etlong-AI</title>
+<meta name="description" content="用 GitHub 私有仓库驱动的个人知识库 / 档案库">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --card:#1c2128; --line:#30363d;
+    --txt:#e6edf3; --sub:#8b949e; --accent:#58a6ff; --green:#3fb950; --yellow:#d29922;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 64px}
+  header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:32px}
+  h1{font-size:2rem;margin:0 0 8px}
+  .tag{display:inline-block;background:var(--panel);border:1px solid var(--line);color:var(--sub);
+       padding:3px 10px;border-radius:20px;font-size:.8rem;margin-right:6px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:24px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;
+        display:block;color:var(--txt)}
+  .card:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-2px);transition:.15s}
+  .card h3{margin:0 0 6px;font-size:1.05rem;color:var(--txt)}
+  .card p{margin:0;color:var(--sub);font-size:.88rem}
+  .card .ico{font-size:1.4rem;margin-bottom:8px;display:block}
+  section{margin:36px 0}
+  h2{font-size:1.4rem;border-left:3px solid var(--accent);padding-left:12px;margin:0 0 14px}
+  .note{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;
+        color:var(--sub);font-size:.92rem;margin:16px 0}
+  .note strong{color:var(--yellow)}
+  ul{padding-left:20px}li{margin:6px 0}
+  code{background:var(--panel);padding:2px 6px;border-radius:4px;font-size:.88em;color:#ffa657}
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:var(--sub);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📚 个人档案库 / 知识库</h1>
+    <div style="margin:10px 0">
+      <span class="tag">仓库：Etlong-lntony/Etlong-AI</span>
+      <span class="tag">GitHub + Obsidian 同步</span>
+      <span class="tag">Actions 自动转 PDF</span>
+    </div>
+    <p style="color:var(--sub)">一个版本控制驱动的个人知识库，用于沉淀笔记、项目、命令片段与学习记录。
+    最近更新：<a href="https://github.com/Etlong-lntony/Etlong-AI/commits/main">查看提交记录</a></p>
+  </header>
+
+  <div class="cards">
+    <a class="card" href="guide.html">
+      <span class="ico">📖</span>
+      <h3>搭建指南</h3>
+      <p>从零搭建 GitHub 档案库的完整步骤（含截图）</p>
+    </a>
+    <a class="card" href="best-practices.html">
+      <span class="ico">🗂️</span>
+      <h3>Obsidian 最佳实践</h3>
+      <p>Obsidian + Git 同步的目录与忽略规则</p>
+    </a>
+    <a class="card" href="https://github.com/Etlong-lntony/Etlong-AI/tree/main/journal">
+      <span class="ico">📓</span>
+      <h3>日记 / 周记</h3>
+      <p>journal/ 目录（GitHub 源码视图）</p>
+    </a>
+    <a class="card" href="https://github.com/Etlong-lntony/Etlong-AI/tree/main/notes">
+      <span class="ico">📝</span>
+      <h3>主题笔记</h3>
+      <p>notes/ 目录（networking / security / linux）</p>
+    </a>
+    <a class="card" href="https://github.com/Etlong-lntony/Etlong-AI/tree/main/snippets">
+      <span class="ico">⌨️</span>
+      <h3>代码片段</h3>
+      <p>常用命令与片段</p>
+    </a>
+    <a class="card" href="https://github.com/Etlong-lntony/Etlong-AI/tree/main/references">
+      <span class="ico">🔖</span>
+      <h3>参考资料</h3>
+      <p>链接收藏</p>
+    </a>
+  </div>
+
+  <section>
+    <h2>快速开始</h2>
+    <ul>
+      <li>进入对应目录，新建 <code>.md</code> 文件</li>
+      <li>修改后执行 <code>git add . && git commit -m "Update" && git push</code></li>
+      <li>启用 Actions 后，PDF 备份会生成在 <code>pdf/</code> 目录</li>
+    </ul>
+    <div class="note">⚠️ <strong>使用建议</strong>：文件名用小写 + 短横线；日期型文件用 <code>YYYY-MM-DD</code> 前缀；
+    不要把密码 / 密钥 / 证件号明文入库。</div>
+  </section>
+
+  <footer>
+    <p>本站由 GitHub Pages 静态托管 · 内容同步自 <code>Etlong-lntony/Etlong-AI</code> 仓库</p>
+  </footer>
+</div>
+</body>
+</html>
