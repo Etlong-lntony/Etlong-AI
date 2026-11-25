@@ -13,13 +13,13 @@
 
 | 步骤 | 截图 | 说明 |
 |---|---|---|
+| 2. 创建仓库 | [01-仓库首页.jpg](https://workbuddy-space-static.codebuddy.work/image/food2ohKKmX1t82IdJsLVC.jpg) | 仓库首页（私有仓库） |
 | 5. Actions 运行日志 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
 | 5. 操作权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
 | 5. 权限与保留期 | [05-Actions权限设置_操作权限.jpg](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg) | 操作权限 + 日志保留 90 天 |
 
 > 截图原件存放于资料库「GitHub 个人档案库 / 界面截图」目录，
 > 指南 PDF 与截图分开存放（PDF 在「指南PDF」目录）。
-> 待补截图：01-新建仓库（建仓库页面）、02-Run workflow（手动触发页）。
 
 ---
 
@@ -87,7 +87,9 @@ git 推 GitHub 不再接受账号密码，必须用 PAT：
 3. **Private**
 4. 勾选 **Add a README file**（这样仓库初始有个 README）
 5. 点 **Create repository**
-   【截图：01-新建仓库.png —— 新建仓库页面】
+
+   ![](https://workbuddy-space-static.codebuddy.work/image/food2ohKKmX1t82IdJsLVC.jpg)
+   *图：建好后的仓库首页（私有仓库，带 README 与完整目录结构）*
 
 > ⚠️ **常见问题 3**：仓库建好后访问 `https://github.com/用户名/仓库名`
 > 显示 404 —— 因为它是**私有**的，未登录访问就是 404，属正常现象。
