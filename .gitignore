@@ -24,7 +24,6 @@ logs/
 # 生成的 PDF 备份（由 GitHub Actions 生成；pdf/ 保留为生成目录）
 GUIDE.pdf
 GUIDE.html
-md2html.js
 
 # 本地截图（正式版存资料库）
 screenshots/
