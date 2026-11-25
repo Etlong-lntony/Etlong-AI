@@ -62,7 +62,8 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "chore: auto-generate PDF backups ($(date -u +'%Y-%m-%d'))"
-            git push
+            # 无上游分支时首次推送
+            git push origin main
           fi
 
       - name: Create daily backup tag
