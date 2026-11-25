@@ -14,7 +14,7 @@
 | 步骤 | 截图 | 说明 |
 |---|---|---|
 | 2. 创建仓库 | [01-仓库首页.jpg](https://workbuddy-space-static.codebuddy.work/image/food2ohKKmX1t82IdJsLVC.jpg) | 仓库首页（私有仓库） |
-| 5. 权限设置 | [04-Actions权限设置.jpg](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg) | Settings → Actions → General → 操作权限 |
+| 5. 权限设置 | [07-Actions权限设置_英文_操作权限+Workflow读写.jpg](https://workbuddy-space-static.codebuddy.work/image/5YACKaddVW1MpGxxxEnT1w.jpg) | Settings → Actions → General 全页（英文界面：Actions permissions + 保留期 + Workflow 读写权限） |
 | 5. 手动触发 | [02-Run-workflow手动触发.jpg](https://workbuddy-space-static.codebuddy.work/image/09qtqIY7k6S7hmuf8ouijC.jpg) | Actions 手动触发页（In progress） |
 | 5. 失败排查 | [03-Actions运行日志.jpg](https://workbuddy-space-static.codebuddy.work/image/GmbbTmu99jtlDcWkIp3Fw9.jpg) | 红色失败 job + set -x 追踪日志 |
 | 5. 成功验收 | [06-备份成功截图.jpg](https://workbuddy-space-static.codebuddy.work/image/fNVOsmgX7KZHHYjrBv7INe.jpg) | 全步骤绿色通过（1m 33s） |
@@ -190,13 +190,17 @@ git push -u origin main
    - 选 **Allow all actions and reusable workflows**（含手动+定时）
    - **Workflow permissions** 选 **Read and write permissions**
      （workflow 要 push PDF 回仓库，必须写权限）
-3. 点 **Save**
+3. 点 **Save**（每个区块各有一个 Save，三处都要保存）
 
-   ![](https://workbuddy-space-static.codebuddy.work/image/xMjovQvCZDEMkKDB1qyFwj.jpg)
-   图：操作权限区 —— 选"允许所有操作和可复用工作流"，Workflow permissions 选"读写权限"（截图 04）
+   ![](https://workbuddy-space-static.codebuddy.work/image/5YACKaddVW1MpGxxxEnT1w.jpg)
+   图：Actions → General 全页（英文界面，截图 07）。从上到下：
+   - **Actions permissions**：选 `Allow all actions and reusable workflows`（允许所有操作和可复用工作流，含手动+定时触发）
+   - **Check, workflow run, status, artifact and log retention**：运行保留期，默认 `90 days`（上限 400 天）
+   - **Fork pull request workflows**：私有仓库可忽略
+   - **Workflow permissions**：选 `Read and write permissions`（读写权限，workflow 要 push PDF 回仓库必须开）
 
-   ![](https://workbuddy-space-static.codebuddy.work/image/ITWusHMHfRzE6u4nfUPO3q.jpg)
-   图：下方为运行保留期设置（截图 05）
+> ⚠️ **提示**：新版界面是英文的，上面每项的英文选项与中文含义对照已标注；
+> 界面语言可在 头像 → Settings → 右上角语言切换器 改回中文（可选）。
 
 > ⚠️ **常见问题 10**：手动触发 Run workflow 后 job 以
 > **exit code 43** 失败
