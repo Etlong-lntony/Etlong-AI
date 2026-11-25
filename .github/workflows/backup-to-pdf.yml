@@ -25,9 +25,11 @@ jobs:
 
       - name: Convert Markdown to PDF
         run: |
+          set -x
           mkdir -p pdf
           shopt -s nullglob
           count=0
+          failed=0
           for md in notes/**/*.md snippets/*.md journal/*.md projects/**/*.md; do
             base=$(basename "$md" .md)
             # 用相对路径去掉 .md 扩展名作为 PDF 文件名，避免不同目录同名覆盖
@@ -38,23 +40,30 @@ jobs:
                 --pdf-engine=xelatex \
                 -V CJKmainfont="Noto Sans CJK SC" \
                 -V geometry:margin=2.5cm \
-                --metadata title="$base"; then
+                --metadata title="$base" \
+                --latex-engine-option="\n"; then
                 count=$((count+1))
               else
+                failed=$((failed+1))
                 echo "WARN: pandoc failed for $md, skipping"
               fi
             fi
           done
-          echo "Converted $count files"
+          echo "Converted $count files, $failed failed"
           ls -la pdf/
 
       - name: Commit PDFs back to repository
         run: |
+          set -x
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "chore: auto-generate PDF backups ($(date -u +'%Y-%m-%d'))"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: auto-generate PDF backups ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi
 
       - name: Create daily backup tag
         if: ${{ github.event_name == 'schedule' }}
