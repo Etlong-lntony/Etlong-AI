@@ -5,6 +5,21 @@
 >
 > 基于真实项目 `Etlong-lntony/Etlong-AI`（2026-11 搭建）整理，
 > 所有报错都是实际踩过的坑，按此顺序执行即可一次成功。
+>
+> 界面截图存放于 WorkBuddy 资料库「GitHub 个人档案库 / 界面截图」，
+> 各步骤对应截图见文内标记。
+
+## 步骤截图索引
+
+| 步骤 | 截图 | 说明 |
+|---|---|---|
+| 2. 创建仓库 | 01-新建仓库.png | GitHub 新建仓库页面 |
+| 5. Actions 权限 | 02-Actions权限设置.png | Settings → Actions → General |
+| 5. 手动触发 | 03-Run workflow.png | 手动触发 Backup & Convert to PDF |
+| 5. 查看结果 | 04-Actions日志.png | 运行日志 / Artifacts |
+
+> 截图请按上表命名后存入资料库「界面截图」目录，指南 PDF 与截图
+> 分开存放（PDF 在「指南PDF」目录）。
 
 ---
 
@@ -72,6 +87,7 @@ git 推 GitHub 不再接受账号密码，必须用 PAT：
 3. **Private**
 4. 勾选 **Add a README file**（这样仓库初始有个 README）
 5. 点 **Create repository**
+   【截图：01-新建仓库.png —— 新建仓库页面】
 
 > ⚠️ **常见问题 3**：仓库建好后访问 `https://github.com/用户名/仓库名`
 > 显示 404 —— 因为它是**私有**的，未登录访问就是 404，属正常现象。
@@ -172,6 +188,7 @@ git push -u origin main
    - **Workflow permissions** 选 **Read and write permissions**
      （workflow 要 push PDF 回仓库，必须写权限）
 3. 点 **Save**
+   【截图：02-Actions权限设置.png —— Actions General 设置页】
 
 > ⚠️ **常见问题 10**：手动触发 Run workflow 后 job 以
 > **exit code 43** 失败
@@ -183,7 +200,9 @@ git push -u origin main
 验证：
 
 - **Actions** → 选 `Backup & Convert to PDF` → **Run workflow**
+  【截图：03-Run workflow.png —— 手动触发页】
 - 绿色通过 = 成功；失败时看日志 + Artifacts 里是否已生成 PDF
+  【截图：04-Actions日志.png —— 运行日志 / Artifacts】
 
 ## 6. 日常使用
 
@@ -221,3 +240,4 @@ git clone https://github.com/Etlong-lntony/Etlong-AI.git
 | `.github/workflows/backup-to-pdf.yml` | 定时转 PDF + 备份 |
 | `OBSIDIAN-BEST-PRACTICES.md` | Obsidian 同步最佳实践 |
 | `GUIDE.md` | 本指南 |
+| `GUIDE.pdf` | 本指南 PDF 版（同步上传资料库） |

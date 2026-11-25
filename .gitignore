@@ -21,6 +21,10 @@ desktop.ini
 logs/
 *.log
 
+# 生成的 PDF 备份（由 GitHub Actions 生成；pdf/ 保留为生成目录）
+GUIDE.pdf
+md2html.js
+
 # 敏感信息（建议用环境变量或加密笔记，不要提交明文）
 # .env
 # *.secret
